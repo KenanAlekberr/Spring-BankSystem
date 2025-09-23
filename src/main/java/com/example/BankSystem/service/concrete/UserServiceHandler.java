@@ -6,7 +6,6 @@ import com.example.BankSystem.dto.request.user.CreateUserRequest;
 import com.example.BankSystem.dto.request.user.UpdateUserRequest;
 import com.example.BankSystem.dto.response.UserResponse;
 import com.example.BankSystem.exception.NotFoundException;
-import com.example.BankSystem.mapper.UserMapper;
 import com.example.BankSystem.service.abstraction.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
