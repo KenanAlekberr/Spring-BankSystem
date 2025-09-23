@@ -1,5 +1,9 @@
 package com.example.BankSystem.dto.request.user;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +16,16 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor
 @FieldDefaults(level = PRIVATE)
 public class CreateUserRequest {
+    @NotBlank(message = "First name cannot be empty")
+    @Size(min = 2, max = 50, message = "First name length must be between 2 and 30")
     String firstName;
+
+    @NotBlank(message = "Last name cannot be empty")
+    @Size(min = 2, max = 50, message = "Last name length must be between 2 and 30")
     String lastName;
+
+    @NotBlank(message = "Email cannot be empty")
+    @Email(message = "Email should be valid")
+    @Pattern(regexp = "^[A-Za-z0-9._%+-]+@gmail\\.com$", message = "Email must be a valid Gmail address")
     String email;
 }
