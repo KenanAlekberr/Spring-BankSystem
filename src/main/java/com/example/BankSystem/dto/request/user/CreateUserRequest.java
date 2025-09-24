@@ -17,15 +17,17 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE)
 public class CreateUserRequest {
     @NotBlank(message = "First name cannot be empty")
-    @Size(min = 2, max = 50, message = "First name length must be between 2 and 30")
+    @Size(min = 2, max = 30, message = "First name length must be between 2 and 30")
     String firstName;
 
     @NotBlank(message = "Last name cannot be empty")
-    @Size(min = 2, max = 50, message = "Last name length must be between 2 and 30")
+    @Size(min = 2, max = 30, message = "Last name length must be between 2 and 30")
     String lastName;
 
     @NotBlank(message = "Email cannot be empty")
     @Email(message = "Email should be valid")
-    @Pattern(regexp = "^[A-Za-z0-9._%+-]+@gmail\\.com$", message = "Email must be a valid Gmail address")
+    @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$",
+            message = "Email must contain a valid domain (e.g. .com, .ru, .org)"
+    )
     String email;
 }

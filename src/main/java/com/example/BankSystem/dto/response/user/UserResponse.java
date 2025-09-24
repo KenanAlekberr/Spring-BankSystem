@@ -1,4 +1,4 @@
-package com.example.BankSystem.dto.response;
+package com.example.BankSystem.dto.response.user;
 
 import com.example.BankSystem.enums.Status;
 import lombok.AllArgsConstructor;

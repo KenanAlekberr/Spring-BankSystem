@@ -1,12 +1,13 @@
 package com.example.BankSystem.exception;
 
-import org.springframework.web.bind.annotation.ResponseStatus;
+import lombok.Getter;
 
-import static org.springframework.http.HttpStatus.NOT_FOUND;
-
-@ResponseStatus(value = NOT_FOUND)
+@Getter
 public class NotFoundException extends RuntimeException {
-    public NotFoundException(String message) {
+    private final String code;
+
+    public NotFoundException(String message, String code) {
         super(message);
+        this.code = code;
     }
 }

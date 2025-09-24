@@ -2,7 +2,7 @@ package com.example.BankSystem.controller;
 
 import com.example.BankSystem.dto.request.user.CreateUserRequest;
 import com.example.BankSystem.dto.request.user.UpdateUserRequest;
-import com.example.BankSystem.dto.response.UserResponse;
+import com.example.BankSystem.dto.response.user.UserResponse;
 import com.example.BankSystem.service.abstraction.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

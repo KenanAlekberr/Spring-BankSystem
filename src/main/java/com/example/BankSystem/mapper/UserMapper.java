@@ -3,7 +3,7 @@ package com.example.BankSystem.mapper;
 import com.example.BankSystem.dao.entity.UserEntity;
 import com.example.BankSystem.dto.request.user.CreateUserRequest;
 import com.example.BankSystem.dto.request.user.UpdateUserRequest;
-import com.example.BankSystem.dto.response.UserResponse;
+import com.example.BankSystem.dto.response.user.UserResponse;
 
 import java.time.LocalDateTime;
 

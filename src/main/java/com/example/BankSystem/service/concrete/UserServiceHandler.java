@@ -4,7 +4,7 @@ import com.example.BankSystem.dao.entity.UserEntity;
 import com.example.BankSystem.dao.repository.UserRepository;
 import com.example.BankSystem.dto.request.user.CreateUserRequest;
 import com.example.BankSystem.dto.request.user.UpdateUserRequest;
-import com.example.BankSystem.dto.response.UserResponse;
+import com.example.BankSystem.dto.response.user.UserResponse;
 import com.example.BankSystem.exception.NotFoundException;
 import com.example.BankSystem.service.abstraction.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +17,7 @@ import java.util.List;
 import static com.example.BankSystem.enums.Status.ACTIVE;
 import static com.example.BankSystem.enums.Status.DELETED;
 import static com.example.BankSystem.enums.Status.IN_PROGRESS;
+import static com.example.BankSystem.exception.ExceptionConstants.USER_NOT_FOUND;
 import static com.example.BankSystem.mapper.UserMapper.USER_MAPPER;
 import static lombok.AccessLevel.PRIVATE;
 
@@ -75,6 +76,6 @@ public class UserServiceHandler implements UserService {
 
     private UserEntity fetchUserIfExist(Long id) {
         return userRepository.findById(id).orElseThrow(() ->
-                new NotFoundException("User not found by id: " + id));
+                new NotFoundException(USER_NOT_FOUND.getCode(), USER_NOT_FOUND.getMessage()));
     }
 }
