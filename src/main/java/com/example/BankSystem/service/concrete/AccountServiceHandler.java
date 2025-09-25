@@ -26,6 +26,7 @@ import static com.example.BankSystem.enums.TransactionType.WITHDRAW;
 import static com.example.BankSystem.exception.ExceptionConstants.ACCOUNT_NOT_FOUND;
 import static com.example.BankSystem.exception.ExceptionConstants.INSUFFICIENT_ACCOUNT;
 import static com.example.BankSystem.mapper.AccountMapper.ACCOUNT_MAPPER;
+import static java.math.BigDecimal.ZERO;
 import static lombok.AccessLevel.PRIVATE;
 
 @Service
@@ -86,7 +87,7 @@ public class AccountServiceHandler implements AccountService {
     public void withdraw(Long accountId, BigDecimal amount) {
         AccountEntity account = fetchAccountIfExist(accountId);
 
-        if (account.getBalance().compareTo(amount) < 0)
+        if (amount.compareTo(ZERO) <= 0 || account.getBalance().compareTo(amount) < 0)
             throw new InsufficientAccountException(INSUFFICIENT_ACCOUNT.getCode(), INSUFFICIENT_ACCOUNT.getMessage());
 
         BigDecimal newBalance = account.getBalance().subtract(amount);

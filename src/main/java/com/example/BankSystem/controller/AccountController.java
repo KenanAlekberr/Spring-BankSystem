@@ -27,7 +27,7 @@ public class AccountController {
     AccountService accountService;
 
     @PostMapping("/post")
-    public AccountResponse createAccount(@RequestBody @Valid CreateAccountRequest request) {
+    public AccountResponse createAccount(@Valid @RequestBody CreateAccountRequest request) {
         return accountService.createAccount(request);
     }
 

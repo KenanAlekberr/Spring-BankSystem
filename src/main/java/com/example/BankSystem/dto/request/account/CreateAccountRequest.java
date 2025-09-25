@@ -26,6 +26,6 @@ public class CreateAccountRequest {
     String accountNumber;
 
     @NotNull(message = "Initial balance cannot be null")
-    @DecimalMin(value = "0.00", inclusive = true, message = "Balance cannot be negative")
+    @DecimalMin(value = "0.00", message = "Balance cannot be negative")
     BigDecimal balance;
 }
