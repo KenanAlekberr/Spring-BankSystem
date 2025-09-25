@@ -1,4 +1,4 @@
-package com.example.BankSystem.exception;
+package com.example.BankSystem.exception.custom;
 
 import lombok.Getter;
 

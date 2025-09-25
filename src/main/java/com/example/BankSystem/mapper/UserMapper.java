@@ -39,5 +39,6 @@ public enum UserMapper {
             user.setEmail(request.getEmail());
 
         user.setStatus(IN_PROGRESS);
+        user.setUpdatedAt(LocalDateTime.now());
     }
 }

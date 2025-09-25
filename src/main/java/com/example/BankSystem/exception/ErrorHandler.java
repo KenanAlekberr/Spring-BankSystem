@@ -1,5 +1,7 @@
 package com.example.BankSystem.exception;
 
+import com.example.BankSystem.exception.custom.InsufficientAccountException;
+import com.example.BankSystem.exception.custom.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -7,8 +9,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import static com.example.BankSystem.exception.ExceptionConstants.HTTP_METHOD_IS_NOT_CORRECT;
+import static com.example.BankSystem.exception.ExceptionConstants.INSUFFICIENT_ACCOUNT;
 import static com.example.BankSystem.exception.ExceptionConstants.UNEXPECTED_EXCEPTION;
-import static com.example.BankSystem.exception.ExceptionConstants.USER_NOT_FOUND;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.METHOD_NOT_ALLOWED;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -27,13 +30,20 @@ public class ErrorHandler {
     @ResponseStatus(NOT_FOUND)
     public ErrorResponse handle(NotFoundException exception) {
         log.error("NotFoundException, ", exception);
-        return new ErrorResponse(USER_NOT_FOUND.getCode(), USER_NOT_FOUND.getMessage());
+        return new ErrorResponse(exception.getCode(), exception.getMessage());
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseStatus(METHOD_NOT_ALLOWED)
-    public ErrorResponse handle(HttpRequestMethodNotSupportedException ex) {
-        log.error("HttpRequestMethodNotSupportedException, ", ex);
+    public ErrorResponse handle(HttpRequestMethodNotSupportedException exception) {
+        log.error("HttpRequestMethodNotSupportedException, ", exception);
         return new ErrorResponse(HTTP_METHOD_IS_NOT_CORRECT.getCode(), HTTP_METHOD_IS_NOT_CORRECT.getMessage());
+    }
+
+    @ExceptionHandler(InsufficientAccountException.class)
+    @ResponseStatus(BAD_REQUEST)
+    public ErrorResponse handle(InsufficientAccountException exception) {
+        log.error("InsufficientAccountException, ", exception);
+        return new ErrorResponse(INSUFFICIENT_ACCOUNT.getCode(), INSUFFICIENT_ACCOUNT.getMessage());
     }
 }

@@ -5,7 +5,7 @@ import com.example.BankSystem.dao.repository.UserRepository;
 import com.example.BankSystem.dto.request.user.CreateUserRequest;
 import com.example.BankSystem.dto.request.user.UpdateUserRequest;
 import com.example.BankSystem.dto.response.user.UserResponse;
-import com.example.BankSystem.exception.NotFoundException;
+import com.example.BankSystem.exception.custom.NotFoundException;
 import com.example.BankSystem.service.abstraction.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -48,10 +48,8 @@ public class UserServiceHandler implements UserService {
         List<UserResponse> userResponses = new ArrayList<>();
 
         for (UserEntity user : users) {
-            if (user.getStatus() == ACTIVE || user.getStatus() == IN_PROGRESS) {
-                UserResponse response = USER_MAPPER.buildUserResponse(user);
-                userResponses.add(response);
-            }
+            if (user.getStatus() == ACTIVE || user.getStatus() == IN_PROGRESS)
+                userResponses.add(USER_MAPPER.buildUserResponse(user));
         }
 
         return userResponses;

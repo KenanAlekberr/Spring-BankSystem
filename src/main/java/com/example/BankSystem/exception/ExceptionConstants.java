@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 public enum ExceptionConstants {
     UNEXPECTED_EXCEPTION("UNEXPECTED_EXCEPTION", "Unexpected exception occurred"),
     USER_NOT_FOUND("USER_NOT_FOUND", "User not found by id"),
+    ACCOUNT_NOT_FOUND("ACCOUNT_NOT_FOUND", "Account not found by id"),
+    INSUFFICIENT_ACCOUNT("INSUFFICIENT_ACCOUNT", "There is not enough money in the balance."),
     HTTP_METHOD_IS_NOT_CORRECT("HTTP_METHOD_IS_NOT_CORRECT", "http method is not correct");
 
     private final String code;
