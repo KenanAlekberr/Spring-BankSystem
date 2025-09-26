@@ -3,12 +3,12 @@ package com.example.BankSystem.service.concrete;
 import com.example.BankSystem.dao.entity.AccountEntity;
 import com.example.BankSystem.dao.entity.TransactionLogEntity;
 import com.example.BankSystem.dao.repository.AccountRepository;
-import com.example.BankSystem.dao.repository.TransactionLogRepository;
 import com.example.BankSystem.dto.request.account.CreateAccountRequest;
 import com.example.BankSystem.dto.response.account.AccountResponse;
-import com.example.BankSystem.exception.custom.InsufficientAccountException;
+import com.example.BankSystem.exception.custom.InsufficientException;
 import com.example.BankSystem.exception.custom.NotFoundException;
 import com.example.BankSystem.service.abstraction.AccountService;
+import com.example.BankSystem.service.abstraction.TransactionLogService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -34,7 +34,7 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 public class AccountServiceHandler implements AccountService {
     AccountRepository accountRepository;
-    TransactionLogRepository transactionLogRepository;
+    TransactionLogService transactionLogService;
 
     @Override
     public AccountResponse createAccount(CreateAccountRequest request) {
@@ -79,7 +79,7 @@ public class AccountServiceHandler implements AccountService {
                 .balanceAfter(newBalance)
                 .build();
 
-        transactionLogRepository.save(log);
+        transactionLogService.save(log);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class AccountServiceHandler implements AccountService {
         AccountEntity account = fetchAccountIfExist(accountId);
 
         if (amount.compareTo(ZERO) <= 0 || account.getBalance().compareTo(amount) < 0)
-            throw new InsufficientAccountException(INSUFFICIENT_ACCOUNT.getCode(), INSUFFICIENT_ACCOUNT.getMessage());
+            throw new InsufficientException(INSUFFICIENT_ACCOUNT.getCode(), INSUFFICIENT_ACCOUNT.getMessage());
 
         BigDecimal newBalance = account.getBalance().subtract(amount);
         account.setBalance(newBalance);
@@ -101,7 +101,7 @@ public class AccountServiceHandler implements AccountService {
                 .balanceAfter(newBalance)
                 .build();
 
-        transactionLogRepository.save(log);
+        transactionLogService.save(log);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class AccountServiceHandler implements AccountService {
                 .balanceAfter(account.getBalance())
                 .build();
 
-        transactionLogRepository.save(log);
+        transactionLogService.save(log);
     }
 
     private AccountEntity fetchAccountIfExist(Long id) {

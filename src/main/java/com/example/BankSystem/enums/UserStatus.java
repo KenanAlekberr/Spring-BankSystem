@@ -1,5 +1,5 @@
 package com.example.BankSystem.enums;
 
-public enum Status {
+public enum UserStatus {
     ACTIVE, DELETED, IN_PROGRESS
 }

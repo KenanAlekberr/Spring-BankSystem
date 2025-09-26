@@ -4,11 +4,12 @@ import com.example.BankSystem.dao.entity.UserEntity;
 import com.example.BankSystem.dto.request.user.CreateUserRequest;
 import com.example.BankSystem.dto.request.user.UpdateUserRequest;
 import com.example.BankSystem.dto.response.user.UserResponse;
+import io.micrometer.common.util.StringUtils;
 
 import java.time.LocalDateTime;
 
-import static com.example.BankSystem.enums.Status.ACTIVE;
-import static com.example.BankSystem.enums.Status.IN_PROGRESS;
+import static com.example.BankSystem.enums.UserStatus.ACTIVE;
+import static com.example.BankSystem.enums.UserStatus.IN_PROGRESS;
 
 public enum UserMapper {
     USER_MAPPER;
@@ -25,20 +26,27 @@ public enum UserMapper {
     }
 
     public UserResponse buildUserResponse(UserEntity user) {
-        return UserResponse.builder().id(user.getId()).firstName(user.getFirstName()).lastName(user.getLastName()).email(user.getEmail()).status(user.getStatus()).createdAt(user.getCreatedAt()).updatedAt(user.getUpdatedAt()).build();
+        return UserResponse.builder()
+                .id(user.getId())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .email(user.getEmail())
+                .status(user.getStatus())
+                .createdAt(user.getCreatedAt())
+                .updatedAt(user.getUpdatedAt())
+                .build();
     }
 
     public void updateUser(UserEntity user, UpdateUserRequest request) {
-        if (request.getFirstName() != null && !request.getFirstName().isBlank())
+        if (StringUtils.isNotEmpty(request.getFirstName()))
             user.setFirstName(request.getFirstName());
 
-        if (request.getLastName() != null && !request.getLastName().isBlank())
+        if (StringUtils.isNotEmpty(request.getLastName()))
             user.setLastName(request.getLastName());
 
-        if (request.getEmail() != null && !request.getEmail().isBlank())
+        if (StringUtils.isNotEmpty(request.getEmail()))
             user.setEmail(request.getEmail());
 
         user.setStatus(IN_PROGRESS);
-        user.setUpdatedAt(LocalDateTime.now());
     }
 }

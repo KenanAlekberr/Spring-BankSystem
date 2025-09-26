@@ -1,6 +1,6 @@
 package com.example.BankSystem.dto.response.user;
 
-import com.example.BankSystem.enums.Status;
+import com.example.BankSystem.enums.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +21,7 @@ public class UserResponse {
     String firstName;
     String lastName;
     String email;
-    Status status;
+    UserStatus status;
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
 }

@@ -41,13 +41,13 @@ public class AccountController {
         return accountService.getAllAccounts();
     }
 
-    @PostMapping("/{id}/deposit")
-    public void deposit(@RequestParam Long accountId, @RequestParam BigDecimal amount) {
+    @PostMapping("/{accountId}/deposit")
+    public void deposit(@PathVariable Long accountId, @RequestParam BigDecimal amount) {
         accountService.deposit(accountId, amount);
     }
 
-    @PostMapping("/{id}/withdraw")
-    public void withdraw(@RequestParam Long accountId, @RequestParam BigDecimal amount) {
+    @PostMapping("/{accountId}/withdraw")
+    public void withdraw(@PathVariable Long accountId, @RequestParam BigDecimal amount) {
         accountService.withdraw(accountId, amount);
     }
 

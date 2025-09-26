@@ -34,8 +34,8 @@ public class AccountEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     Long id;
-    Long userId;
 
+    Long userId;
     String accountNumber;
     BigDecimal balance;
 

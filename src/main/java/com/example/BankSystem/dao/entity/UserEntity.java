@@ -1,6 +1,6 @@
 package com.example.BankSystem.dao.entity;
 
-import com.example.BankSystem.enums.Status;
+import com.example.BankSystem.enums.UserStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -39,7 +39,7 @@ public class UserEntity {
     String email;
 
     @Enumerated(STRING)
-    Status status;
+    UserStatus status;
 
     @CreationTimestamp
     LocalDateTime createdAt;

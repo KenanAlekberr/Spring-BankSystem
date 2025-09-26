@@ -1,6 +1,6 @@
 package com.example.BankSystem.exception;
 
-import com.example.BankSystem.exception.custom.InsufficientAccountException;
+import com.example.BankSystem.exception.custom.InsufficientException;
 import com.example.BankSystem.exception.custom.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -40,9 +40,9 @@ public class ErrorHandler {
         return new ErrorResponse(HTTP_METHOD_IS_NOT_CORRECT.getCode(), HTTP_METHOD_IS_NOT_CORRECT.getMessage());
     }
 
-    @ExceptionHandler(InsufficientAccountException.class)
+    @ExceptionHandler(InsufficientException.class)
     @ResponseStatus(BAD_REQUEST)
-    public ErrorResponse handle(InsufficientAccountException exception) {
+    public ErrorResponse handle(InsufficientException exception) {
         log.error("InsufficientAccountException, ", exception);
         return new ErrorResponse(INSUFFICIENT_ACCOUNT.getCode(), INSUFFICIENT_ACCOUNT.getMessage());
     }

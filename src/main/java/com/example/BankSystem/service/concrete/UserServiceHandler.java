@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.BankSystem.enums.Status.ACTIVE;
-import static com.example.BankSystem.enums.Status.DELETED;
-import static com.example.BankSystem.enums.Status.IN_PROGRESS;
+import static com.example.BankSystem.enums.UserStatus.ACTIVE;
+import static com.example.BankSystem.enums.UserStatus.DELETED;
+import static com.example.BankSystem.enums.UserStatus.IN_PROGRESS;
 import static com.example.BankSystem.exception.ExceptionConstants.USER_NOT_FOUND;
 import static com.example.BankSystem.mapper.UserMapper.USER_MAPPER;
 import static lombok.AccessLevel.PRIVATE;
