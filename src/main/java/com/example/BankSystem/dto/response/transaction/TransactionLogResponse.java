@@ -19,9 +19,9 @@ import static lombok.AccessLevel.PRIVATE;
 @Builder
 public class TransactionLogResponse {
     Long id;
-    Long accountId;
+    Long fromAccountId;
+    Long toAccountId;
     TransactionType transactionType;
-    BigDecimal amount;
     BigDecimal balanceAfter;
     LocalDateTime createdAt;
 }

@@ -9,9 +9,9 @@ public enum TransactionLogMapper {
     public TransactionLogResponse buildTransactionLogResponse(TransactionLogEntity log) {
         return TransactionLogResponse.builder()
                 .id(log.getId())
-                .accountId(log.getAccountId())
+                .fromAccountId(log.getFromAccountId())
+                .toAccountId(log.getToAccountId())
                 .transactionType(log.getTransactionType())
-                .amount(log.getAmount())
                 .balanceAfter(log.getBalanceAfter())
                 .createdAt(log.getCreatedAt())
                 .build();

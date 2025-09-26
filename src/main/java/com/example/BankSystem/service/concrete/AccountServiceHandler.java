@@ -73,9 +73,9 @@ public class AccountServiceHandler implements AccountService {
         accountRepository.save(account);
 
         TransactionLogEntity log = TransactionLogEntity.builder()
-                .accountId(accountId)
+                .fromAccountId(accountId)
+                .toAccountId(accountId)
                 .transactionType(DEPOSIT)
-                .amount(amount)
                 .balanceAfter(newBalance)
                 .build();
 
@@ -95,9 +95,9 @@ public class AccountServiceHandler implements AccountService {
         accountRepository.save(account);
 
         TransactionLogEntity log = TransactionLogEntity.builder()
-                .accountId(accountId)
+                .fromAccountId(accountId)
+                .toAccountId(accountId)
                 .transactionType(WITHDRAW)
-                .amount(amount)
                 .balanceAfter(newBalance)
                 .build();
 
@@ -113,9 +113,9 @@ public class AccountServiceHandler implements AccountService {
         AccountEntity account = fetchAccountIfExist(fromId);
 
         TransactionLogEntity log = TransactionLogEntity.builder()
-                .accountId(fromId)
+                .fromAccountId(fromId)
+                .toAccountId(toId)
                 .transactionType(TRANSFER)
-                .amount(amount)
                 .balanceAfter(account.getBalance())
                 .build();
 

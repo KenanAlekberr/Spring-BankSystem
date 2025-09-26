@@ -33,12 +33,12 @@ public class TransactionLogEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     Long id;
-    Long accountId;
+    Long fromAccountId;
+    Long toAccountId;
 
     @Enumerated(STRING)
     TransactionType transactionType;
 
-    BigDecimal amount;
     BigDecimal balanceAfter;
 
     @CreationTimestamp

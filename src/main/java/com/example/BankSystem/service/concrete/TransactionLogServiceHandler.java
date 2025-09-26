@@ -22,7 +22,7 @@ public class TransactionLogServiceHandler implements TransactionLogService {
 
     @Override
     public List<TransactionLogResponse> getByAccountId(Long accountId) {
-        List<TransactionLogEntity> transactionLogEntities = transactionLogRepository.findByAccountId(accountId);
+        List<TransactionLogEntity> transactionLogEntities = transactionLogRepository.findByFromAccountId(accountId);
         List<TransactionLogResponse> responses = new ArrayList<>();
 
         for (TransactionLogEntity transactionLogEntity : transactionLogEntities) {
