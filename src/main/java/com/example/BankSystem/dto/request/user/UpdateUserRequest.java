@@ -18,7 +18,7 @@ public class UpdateUserRequest {
     @Size(min = 2, max = 30, message = "First name length must be between 2 and 30")
     String firstName;
 
-    @Size(min = 2, max = 30, message = "First name length must be between 2 and 30")
+    @Size(min = 2, max = 30, message = "Last name length must be between 2 and 30")
     String lastName;
 
     @Email(message = "Email should be valid")
