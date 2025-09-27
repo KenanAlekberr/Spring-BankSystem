@@ -30,7 +30,7 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: balance_after
-                  type: NUMERIC(10,2)
+                  type: NUMERIC(10, 2)
                   constraints:
                     nullable: true
               - column:

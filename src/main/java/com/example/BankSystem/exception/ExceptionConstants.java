@@ -14,8 +14,4 @@ public enum ExceptionConstants {
 
     private final String code;
     private final String message;
-
-    public String getMessage(Object... param) {
-        return String.format(message, param);
-    }
 }
